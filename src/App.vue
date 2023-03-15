@@ -1,11 +1,19 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <navbar/>
   <router-view/>
 </template>
 
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import Navbar from './widgets/Navbar/Navbar.vue';
+export default defineComponent({
+  components: {
+    Navbar
+  }
+})
+
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -14,17 +22,28 @@
   text-align: center;
   color: #2c3e50;
 }
-
-nav {
-  padding: 30px;
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+a {
+  text-decoration: none;
 }
-
-nav a.router-link-exact-active {
-  color: #42b983;
+img {
+  max-width: 100%;
+}
+button {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
 }
 </style>
