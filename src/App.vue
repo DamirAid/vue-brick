@@ -45,5 +45,6 @@ button {
 }
 body {
   margin: 0;
+  background: #F2F5F8;
 }
 </style>

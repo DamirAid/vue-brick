@@ -82,6 +82,7 @@ export default defineComponent({
     justify-content: space-between;
     align-items: center;
     padding: 15px 90px;
+    background: #fff;
 }
 .navbar-right {
     display: flex;

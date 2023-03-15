@@ -1,37 +1,47 @@
 <template>
-    <nav>
-        <ul class="breadcrumb">
-            <li
-                v-for="(crumb,i) in crumbs"
-                :key="i"
-                class="breadcrumb-item"
-                >
-                <button class="btn" :class="{ disabled: isLast(i) }">
-                    {{ crumb }}
-                </button>
-            </li>
-        </ul>
-    </nav>
+    <button class="btn" :class="theme">
+        <slot />
+    </button>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
+
+export enum BUTTON_THEME {
+    clear = "clear",
+    contained = "contained"
+}
 
 export default defineComponent({
-  props: {
-    crumbs: {
-        type: Array,
-        required: true
-    }
-  },
-  methods: {
-    isLast(index: number) {
-        return index === this.crumbs.length - 1
-    }
-  }
+    props: {
+        theme: {
+            type: String as PropType<BUTTON_THEME>,
+            default: BUTTON_THEME.clear
+        }
+    },
 })
 </script>
 
 <style scoped>
+.btn.clear {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-decoration-line: underline;
+    color: #458AFB;
+}
 
+.btn.contained {
+    background: #FFBD27;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    padding: 17px;
+}
 </style>

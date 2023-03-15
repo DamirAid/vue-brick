@@ -1,14 +1,8 @@
-import { createStore } from 'vuex'
+import Vuex from "vuex";
+import DocumentModule from "../entity/Document/model/store";
 
-export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+export default new Vuex.Store({
   modules: {
-  }
-})
+    module1: DocumentModule,
+  },
+});
