@@ -5,8 +5,8 @@
       "type": "dogovor",
       "title": "Договор",
       "number": "№001",
-      "start_date": "04.07.2021",
-      "end_date": "04.07.2022",
+      "start_date": "01.07.2021",
+      "end_date": "01.07.2022",
       "status": "reject",
       "file": {
         "type": "pdf",
@@ -18,8 +18,8 @@
       "type": "spravka",
       "title": "Справка",
       "number": "№002",
-      "start_date": "04.07.2021",
-      "end_date": "04.07.2022",
+      "start_date": "02.07.2021",
+      "end_date": "02.07.2022",
       "status": "resolve",
       "file": {
         "type": "doc",
@@ -31,8 +31,8 @@
       "type": "anketa",
       "title": "Анкета",
       "number": "№003",
-      "start_date": "04.07.2021",
-      "end_date": "04.07.2022",
+      "start_date": "03.07.2021",
+      "end_date": "03.07.2022",
       "status": "reject",
       "file": {
         "type": "jpg",
@@ -51,6 +51,19 @@
         "type": "pdf",
         "file_url": "http://google.com"
       }
+    },
+    {
+      "type": "Справка",
+      "title": "Новая справка",
+      "number": "123456",
+      "start_date": "04.07.2021",
+      "end_date": "04.07.2022",
+      "status": "Заключен",
+      "file": {
+        "type": "pdf",
+        "file_url": "http://google.com"
+      },
+      "id": 5
     }
   ]
 }

@@ -132,7 +132,7 @@ import Avatar from '@/shared/ui/Avatar/Avatar.vue';
 import Button, { BUTTON_THEME } from '@/shared/ui/Button/Button.vue';
 import DocumentItem from '@/entity/Document/ui/DocumentItem.vue';
 import Modal from "@/shared/ui/Modal/Modal.vue";
-import FilterList from "@/widgets/FilterList/FilterList.vue";
+import FilterList from "@/widgets/FilterList/UpdateDocumentsBar.vue";
 
 
 export default defineComponent({

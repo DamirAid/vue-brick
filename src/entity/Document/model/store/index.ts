@@ -1,47 +1,58 @@
-import axios from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { IDocument } from "@/entity/Document/types/DocumentSchema";
+import { ActionContext } from "vuex";
+import { State } from "@/store";
 
-const axiosConfig: any = {
+const axiosConfig: AxiosRequestConfig = {
   baseURL: "http://localhost:8000",
- 
 };
-const instance = axios.create(axiosConfig);
+const instance: AxiosInstance = axios.create(axiosConfig);
+
+export interface DocumentState {
+  documents: Array<IDocument>;
+}
+
+type Context = ActionContext<DocumentState, State>;
 
 export default {
   actions: {
-    async getDocuments(context: any) {
+    async getDocuments(context: Context): Promise<Array<IDocument>> {
       try {
-        const { data } = await instance.get("/documents" + window.location.search);
+        const { data } = await instance.get(
+          "/documents" + window.location.search
+        );
         context.commit("updateDocuments", data);
       } catch (e) {
         console.log(e);
       }
+      return context.state.documents;
     },
-    async addDocument(context: any, data: any) {
+    async addDocument(
+      context: Context,
+      data: IDocument
+    ): Promise<Array<IDocument>> {
       try {
-        const { data: responseData } = await instance.post(
-          "/documents",
-          data as IDocument
-        );
+        const { data: responseData } = await instance.post("/documents", data);
         context.commit("updateDocumentsWithAdding", responseData);
       } catch (e) {
         console.log(e);
       }
+      return context.state.documents;
     },
   },
   mutations: {
-    updateDocuments(state: any, payload: any) {
+    updateDocuments(state: DocumentState, payload: IDocument[]) {
       state.documents = payload;
     },
-    updateDocumentsWithAdding(state: any, payload: any) {
+    updateDocumentsWithAdding(state: DocumentState, payload: IDocument) {
       state.documents.push(payload);
     },
   },
-  state: {
-    documents: [],
-  },
+  state: (): DocumentState => ({
+    documents: Array<IDocument>(),
+  }),
   getters: {
-    allDocuments(state: any) {
+    allDocuments(state: DocumentState) {
       return state.documents;
     },
   },

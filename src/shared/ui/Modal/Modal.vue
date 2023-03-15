@@ -1,11 +1,13 @@
 <template>
-    <div class="modal" :class="{ opened: isOpen === true, isClosing: isClosing }">
-        <div class="overlay" @click="closeHandler">
-            <div class="content" @click.stop>
-                <slot />
+    <Teleport to="body">
+        <div class="modal" :class="{ opened: isOpen === true, isClosing: isClosing }">
+            <div class="overlay" @click="closeHandler">
+                <div class="content" @click.stop>
+                    <slot />
+                </div>
             </div>
         </div>
-    </div>
+    </Teleport>
 </template>
 
 <script lang="ts">
