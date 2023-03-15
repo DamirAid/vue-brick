@@ -1,5 +1,56 @@
 {
-    "documents": [
-        1,2,3,4
-    ]
+  "documents": [
+    {
+      "id": 1,
+      "type": "dogovor",
+      "title": "Договор",
+      "number": "№001",
+      "start_date": "04.07.2021",
+      "end_date": "04.07.2022",
+      "status": "reject",
+      "file": {
+        "type": "pdf",
+        "file_url": "http://google.com"
+      }
+    },
+    {
+      "id": 2,
+      "type": "spravka",
+      "title": "Справка",
+      "number": "№002",
+      "start_date": "04.07.2021",
+      "end_date": "04.07.2022",
+      "status": "resolve",
+      "file": {
+        "type": "doc",
+        "file_url": "http://google.com"
+      }
+    },
+    {
+      "id": 3,
+      "type": "anketa",
+      "title": "Анкета",
+      "number": "№003",
+      "start_date": "04.07.2021",
+      "end_date": "04.07.2022",
+      "status": "reject",
+      "file": {
+        "type": "jpg",
+        "file_url": "http://google.com"
+      }
+    },
+    {
+      "id": 4,
+      "type": "dogovor",
+      "title": "Договор",
+      "number": "№004",
+      "start_date": "04.07.2021",
+      "end_date": "04.07.2022",
+      "status": "resolve",
+      "file": {
+        "type": "pdf",
+        "file_url": "http://google.com"
+      }
+    }
+  ]
 }

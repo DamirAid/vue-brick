@@ -76,26 +76,63 @@
                 </defs>
               </svg>
             </a>
-            <Button :theme="buttonTheme">Комментарии</Button>
+            <Button :theme="buttonTheme.clear">Комментарии</Button>
           </div>
         </div>
       </div>
     </Card>
-
-    <div class="document_wrap">
-      <DocumentItem v-for="(document,i) in allDocuments" />
+    <div class="document_section">
+      <div class="document_add_btn_wrap">
+        <FilterList />
+        <Button :theme="buttonTheme.contained" @click="onToggleModal">добавить документ</Button>
+        <Modal :isOpen="isOpenAddModal" :onClose="onToggleModal">
+          <h2>Добавить документ</h2>
+          <div class="input_wrap">
+            <div class="input_info">Тип документа: * </div>
+            <div class="radio_btn_wrap">
+              <label for="dogovor">
+                <input value="Договор" id="dogovor" type="radio" name="type_document" v-model="document_type">
+                Договор
+              </label>
+              <label for="spravka">
+                <input value="Справка" id="spravka" type="radio" name="type_document" v-model="document_type">
+                Справка
+              </label>
+              <label for="anketa">
+                <input value="Анкета" id="anketa" type="radio" name="type_document" v-model="document_type">
+                Другое
+              </label>
+            </div>
+            <div class="input_text_wrap">
+              <input v-model="document_title" type="text" name="title" placeholder="Название документа *">
+            </div>
+            <div class="input_text_wrap">
+              <input v-model="document_number" type="text" name="number" placeholder="Номер">
+            </div>
+            <div class="btn_wrap">
+              <Button :theme="buttonTheme.contained" @click="onSubmit">Добавить документ</Button>
+            </div>
+          </div>
+        </Modal>
+      </div>
+      <div class="document_container">
+        <DocumentItem v-for="(document, i) in allDocuments" :key="i" :document="document" />
+      </div>
     </div>
+
   </div>
 </template>
 
 <script lang="ts">
-import {mapActions, mapGetters} from "vuex"
+import { mapActions, mapGetters } from "vuex"
 import { defineComponent } from 'vue';
 import Card from '@/shared/ui/Card/Card.vue';
 import { SIZE } from '@/shared/ui/Avatar/Avatar.vue';
 import Avatar from '@/shared/ui/Avatar/Avatar.vue';
 import Button, { BUTTON_THEME } from '@/shared/ui/Button/Button.vue';
 import DocumentItem from '@/entity/Document/ui/DocumentItem.vue';
+import Modal from "@/shared/ui/Modal/Modal.vue";
+import FilterList from "@/widgets/FilterList/FilterList.vue";
 
 
 export default defineComponent({
@@ -103,21 +140,52 @@ export default defineComponent({
     Card,
     Avatar,
     Button,
-    DocumentItem
-  },
+    DocumentItem,
+    Modal,
+    FilterList
+},
   computed: {
     ...mapGetters(["allDocuments"]),
     size() {
       return SIZE.large
     },
     buttonTheme() {
-      return BUTTON_THEME.clear
+      return BUTTON_THEME
     }
   },
   methods: {
-    ...mapActions(["getDocuments"])
+    ...mapActions(["getDocuments", "addDocument"]),
+    onToggleModal() {
+      this.isOpenAddModal = !this.isOpenAddModal
+    },
+    onSubmit() {
+      const data = {
+        type: this.document_type,
+        title: this.document_title,
+        number: this.document_number,
+        start_date: "04.07.2021",
+        end_date: "04.07.2022",
+        status: "Заключен",
+        file: {
+          type: "pdf",
+          file_url: "http://google.com"
+        }
+      }
+      this.addDocument(data)
+      this.onToggleModal()
+
+
+    }
   },
-  
+  data() {
+    return {
+      isOpenAddModal: false,
+      document_type: "Договор",
+      document_title: "",
+      document_number: ""
+    }
+  },
+
   async mounted() {
     this.getDocuments()
   }
@@ -140,15 +208,56 @@ export default defineComponent({
   display: flex;
   justify-content: flex-start;
 }
+
 .user-info-text {
   margin-left: 40px;
 }
+
 .user-social-wrap {
   display: flex;
   align-items: center;
   padding-top: 40px;
 }
+
 .user-social-wrap a {
   margin-right: 10px;
+}
+
+.document_container {
+  padding-top: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.document_section {
+  padding-top: 30px;
+}
+
+.document_add_btn_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+}
+
+.input_text_wrap input {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid #B9C2C9;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000;
+  margin-top: 40px;
+}
+
+.btn_wrap {
+  padding-top: 30px;
 }
 </style>
