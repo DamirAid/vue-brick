@@ -64,6 +64,19 @@
         "file_url": "http://google.com"
       },
       "id": 5
+    },
+    {
+      "type": "Анкета",
+      "title": "321",
+      "number": "321",
+      "start_date": "04.07.2021",
+      "end_date": "04.07.2022",
+      "status": "Заключен",
+      "file": {
+        "type": "pdf",
+        "file_url": "http://google.com"
+      },
+      "id": 6
     }
   ]
 }
